@@ -30,7 +30,7 @@ class colorfromposition_app : public sb7::application
 {
     void init()
     {
-        static const char title[] = "OpenGL SuperBible - Simple Triangle";
+        static const char title[] = "OpenGL SuperBible - Fragment Color from Position";
 
         sb7::application::init();
 
