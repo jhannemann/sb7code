@@ -1,5 +1,5 @@
 /*
- * Copyright © 2012-2015 Graham Sellers
+ * Copyright Â© 2012-2015 Graham Sellers
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -27,7 +27,7 @@
 // Remove this to draw only a single cube!
 // #define MANY_CUBES
 
-class singlepoint_app : public sb7::application
+class spinnycube_app : public sb7::application
 {
     void init()
     {
@@ -42,40 +42,40 @@ class singlepoint_app : public sb7::application
     {
         static const char * vs_source[] =
         {
-            "#version 410 core                                                  \n"
-            "                                                                   \n"
-            "in vec4 position;                                                  \n"
-            "                                                                   \n"
-            "out VS_OUT                                                         \n"
-            "{                                                                  \n"
-            "    vec4 color;                                                    \n"
-            "} vs_out;                                                          \n"
-            "                                                                   \n"
-            "uniform mat4 mv_matrix;                                            \n"
-            "uniform mat4 proj_matrix;                                          \n"
-            "                                                                   \n"
-            "void main(void)                                                    \n"
-            "{                                                                  \n"
-            "    gl_Position = proj_matrix * mv_matrix * position;              \n"
-            "    vs_out.color = position * 2.0 + vec4(0.5, 0.5, 0.5, 0.0);      \n"
-            "}                                                                  \n"
+            "#version 410 core                                               \n"
+            "                                                                \n"
+            "in vec4 position;                                               \n"
+            "                                                                \n"
+            "out VS_OUT                                                      \n"
+            "{                                                               \n"
+            "    vec4 color;                                                 \n"
+            "} vs_out;                                                       \n"
+            "                                                                \n"
+            "uniform mat4 mv_matrix;                                         \n"
+            "uniform mat4 proj_matrix;                                       \n"
+            "                                                                \n"
+            "void main(void)                                                 \n"
+            "{                                                               \n"
+            "    gl_Position = proj_matrix * mv_matrix * position;           \n"
+            "    vs_out.color = position * 2.0 + vec4(0.5, 0.5, 0.5, 0.0);   \n"
+            "}                                                               \n"
         };
 
         static const char * fs_source[] =
         {
-            "#version 410 core                                                  \n"
-            "                                                                   \n"
-            "out vec4 color;                                                    \n"
-            "                                                                   \n"
-            "in VS_OUT                                                          \n"
-            "{                                                                  \n"
-            "    vec4 color;                                                    \n"
-            "} fs_in;                                                           \n"
-            "                                                                   \n"
-            "void main(void)                                                    \n"
-            "{                                                                  \n"
-            "    color = fs_in.color;                                           \n"
-            "}                                                                  \n"
+            "#version 410 core                                               \n"
+            "                                                                \n"
+            "out vec4 color;                                                 \n"
+            "                                                                \n"
+            "in VS_OUT                                                       \n"
+            "{                                                               \n"
+            "    vec4 color;                                                 \n"
+            "} fs_in;                                                        \n"
+            "                                                                \n"
+            "void main(void)                                                 \n"
+            "{                                                               \n"
+            "    color = fs_in.color;                                        \n"
+            "}                                                               \n"
         };
 
         program = glCreateProgram();
@@ -183,23 +183,25 @@ class singlepoint_app : public sb7::application
         for (i = 0; i < 24; i++)
         {
             float f = (float)i + (float)currentTime * 0.3f;
-            vmath::mat4 mv_matrix = vmath::translate(0.0f, 0.0f, -6.0f) *
-                                    vmath::rotate((float)currentTime * 45.0f, 0.0f, 1.0f, 0.0f) *
-                                    vmath::rotate((float)currentTime * 21.0f, 1.0f, 0.0f, 0.0f) *
-                                    vmath::translate(sinf(2.1f * f) * 2.0f,
-                                                     cosf(1.7f * f) * 2.0f,
-                                                     sinf(1.3f * f) * cosf(1.5f * f) * 2.0f);
+            vmath::mat4 mv_matrix =
+                vmath::translate(0.0f, 0.0f, -6.0f) *
+                vmath::rotate((float)currentTime * 45.0f, 0.0f, 1.0f, 0.0f) *
+                vmath::rotate((float)currentTime * 21.0f, 1.0f, 0.0f, 0.0f) *
+                vmath::translate(sinf(2.1f * f) * 2.0f,
+                                 cosf(1.7f * f) * 2.0f,
+                                 sinf(1.3f * f) * cosf(1.5f * f) * 2.0f);
             glUniformMatrix4fv(mv_location, 1, GL_FALSE, mv_matrix);
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
 #else
         float f = (float)currentTime * 0.3f;
-        vmath::mat4 mv_matrix = vmath::translate(0.0f, 0.0f, -4.0f) *
-                                vmath::translate(sinf(2.1f * f) * 0.5f,
-                                                    cosf(1.7f * f) * 0.5f,
-                                                    sinf(1.3f * f) * cosf(1.5f * f) * 2.0f) *
-                                vmath::rotate((float)currentTime * 45.0f, 0.0f, 1.0f, 0.0f) *
-                                vmath::rotate((float)currentTime * 81.0f, 1.0f, 0.0f, 0.0f);
+        vmath::mat4 mv_matrix =
+            vmath::translate(0.0f, 0.0f, -4.0f) *
+            vmath::translate(sinf(2.1f * f) * 0.5f,
+                                cosf(1.7f * f) * 0.5f,
+                                sinf(1.3f * f) * cosf(1.5f * f) * 2.0f) *
+            vmath::rotate((float)currentTime * 45.0f, 0.0f, 1.0f, 0.0f) *
+            vmath::rotate((float)currentTime * 81.0f, 1.0f, 0.0f, 0.0f);
         glUniformMatrix4fv(mv_location, 1, GL_FALSE, mv_matrix);
         glDrawArrays(GL_TRIANGLES, 0, 36);
 #endif
@@ -231,4 +233,4 @@ private:
     vmath::mat4     proj_matrix;
 };
 
-DECLARE_MAIN(singlepoint_app)
+DECLARE_MAIN(spinnycube_app)
