@@ -4,3 +4,6 @@ libglfw3.a
 libglfw3_d.a
 libsb7_d.a
 extern/glfw-3.2.1/.idea/
+extern/glfw-3.2.1/cmake-build-*
+.idea/
+cmake-build-*
