@@ -2,6 +2,8 @@ cmake_minimum_required (VERSION 3.0)
 
 project (superbible7)
 
+set(CMAKE_CXX_STANDARD 11)
+
 LINK_DIRECTORIES( ${CMAKE_SOURCE_DIR}/lib )
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
